@@ -1,4 +1,3 @@
-set -e
 
 echo "This is the Meditative Void installation script"
 echo ""
@@ -15,7 +14,20 @@ case "$command" in
     ;;
 
   [Ii]nstall)
-    echo "installing"
+    sudo xbps-install kde-plasma
+    sudo xbps-install kde-baseapps
+
+    ln -s /etc/sv/dbus /var/service
+    ln -s /etc/sv/sddm /var/service
+
+    sudo xbps-install fastfetch
+    sudo xbps-install curl
+    sudo xbps-install git
+
+    curl -OL "https://www.jetbrains.com/toolbox-app/" --output "jetbrains-toolbox.tar.gz"
+
+    git clone --filter=blob:none --no-checkout --depth 1 <https://github.com/ExpoInf/dotfiles-meditative>
+    git sparse-checkout set <dotfiles/fastfetch/config.jsonc> <dotfiles/starship.toml>
     ;;
 
   [Ee]xit)
