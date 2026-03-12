@@ -1,0 +1,54 @@
+# ~/.config/starship.toml
+
+format = '''
+[┌───────────────────](bold green)$time$os$shell$hostname$directory$rust$package
+[│](bold green)$username
+[└───>](bold green) '''
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+# Set 'foo' as custom color palette
+palette = 'foo'
+
+[username]
+format = '[$user]($style)'
+style_user = 'bold white'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+ssh_symbol = "Sshing󰣩 into"
+format = ' | [$ssh_symbol](bold blue) [$hostname](bold white) '
+trim_at = '.companyname.com'
+disabled = false
+
+[os]
+format = "[($name)]($style)"
+disabled = false
+style = "bold white"
+
+[shell]
+format = ' using [$indicator]($style)(italic)'
+bash_indicator = 'bash'
+style = "bold white"
+disabled = false
+
+[character]
+format = '$symbol'
+error_symbol = '[>](bold red)'
+success_symbol = '[>](bold white)'
+disabled = false
+
+[time]
+format = '[$time](&style) | '
+use_12hr = true
+style = 'bold green'
+disabled = false
+
+# Define custom colors
+[palettes.foo]
